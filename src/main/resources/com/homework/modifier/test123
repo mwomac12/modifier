@@ -1,0 +1,12 @@
+{
+  "vehicles": {
+    "3FAHP0JG44453CR333166": {
+      "vin": "3FAHP0JG44453CR333166",
+      "trim": "t123"
+    },
+    "3FAHP0J6224G3CR333167": {
+      "vin": "3FAHP0J6224G3CR333167",
+      "trim": "t124"
+    }
+  }
+}
