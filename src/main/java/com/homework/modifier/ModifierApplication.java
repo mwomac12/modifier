@@ -24,8 +24,8 @@ import java.util.Map;
 @SpringBootApplication
 public class ModifierApplication {
 
-	public static final String xmlInputFilePath = "C:\\Users\\Dustin\\Documents\\projects\\frankhomework\\inventory.xml";
-	public static final String xmlOutputFilePath = "C:\\Users\\Dustin\\Documents\\projects\\frankhomework\\inventorymod.xml";
+	public static final File xmlInputFilePath = new File(ModifierApplication.class.getResource("inventory").getFile());
+	public static final File xmlOutputFilePath = new File(ModifierApplication.class.getResource("inventorymod").getFile());
 
 	private static Map<String, String> resultMap;
 
@@ -43,7 +43,7 @@ public class ModifierApplication {
 	public static Map<String, String> jsonNodeParser() throws IOException {
 
 
-		JsonNode node = new ObjectMapper().readTree(new File("C:\\Users\\Dustin\\Documents\\projects\\frankhomework\\test2.json"));
+		JsonNode node = new ObjectMapper().readTree(new File(ModifierApplication.class.getResource("test123").getFile()));
 		JsonNode vehicles = node.get("vehicles");
 
 		Iterator<Map.Entry<String, JsonNode>> itr = vehicles.fields();
@@ -56,6 +56,7 @@ public class ModifierApplication {
 			String trim = value.get("trim").textValue();
 			resultMap.put(vin, trim);
 		}
+		System.out.println(resultMap);
 		return resultMap;
 	}
 
@@ -98,7 +99,7 @@ public class ModifierApplication {
 			Transformer transformer = transformerFactory.newTransformer();
 
 			DOMSource domSource = new DOMSource(document);
-			StreamResult streamResult = new StreamResult(new File(xmlOutputFilePath));
+			StreamResult streamResult = new StreamResult(xmlOutputFilePath);
 
 			//Transform the data
 			transformer.transform(domSource, streamResult);
